@@ -1,6 +1,6 @@
 import random
+from virus import * 
 from simulation import *
-from virus import *
 # TODO: Import the virus clase
 
 class Person(object):
@@ -13,29 +13,18 @@ class Person(object):
         self.is_alive = True
         self.infected = infected
         #self.virus = virus
-'''
-    def interactions(self, friend):
-        if friend.infected:
-            return(False)
-        else:
-            return self.virus.attack(friend)
-            
-    def is_dead(self):
-        if self.virus.mortality >= random.random():
-            self.is_alive = False
-        else:
-            self.is_vaccinated = True
-            self.infected = False
-'''
-    def did_survive_infection(self):
+
+    def did_survive_infection(self, mortality_rate):
         if self.infected != None:
-            if random.random() <= self.morality:
+            if random.random() <= mortality_rate:
                 self.is_alive = False
-                self.infected = True
+                self.infected = None
+                #print(self._id, "died")
                 return False
             else:
                 self.is_vaccinated = True
                 self.infected = None
+                #print(self._id, "survived and is vaccinated")
                 return True
         
         
