@@ -47,7 +47,7 @@ def test_create_population():
     for person in simulation.population:
         if person.infected is not None:
             infected_count += 1
-    assert infected_count == 101
+    assert infected_count == 100
 
 def test_run():
     simulation = create_simulation()
