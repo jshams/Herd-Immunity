@@ -89,7 +89,7 @@ class Simulation(object):
         for person in self.population:
             if not person.is_alive:
                 self.total_dead += 1
-        
+
         #print("DEAD:",self.total_dead)
         if len(self.population) - self.total_dead <= 1:
             print("Everybody died. The virus is dangerous.")
@@ -121,12 +121,15 @@ class Simulation(object):
             should_continue = self._simulation_should_continue()
             self.time_step()
             time_step_counter += 1
-            
+
         print("Time step counter at: " + str(time_step_counter))
+
+        self.logger.close_logger()
+
         # TODO: for every iteration of this loop, call self.time_step() to compute another
         # round of this simulation.  At the end of each iteration of this loop, remember
         # to rebind should_continue to another call of self._simulation_should_continue()!
-            
+
         #print('The simulation has ended after {time_step_counter} turns.'.format(time_step_counter))
 
     def time_step(self):
@@ -144,7 +147,7 @@ class Simulation(object):
             #               - Increment interaction counter by 1.
         infectedPeople = []
         healthyAlivePeople = []
-        for person in self.population: 
+        for person in self.population:
             if person.infected != None and person.is_alive == True:
                 infectedPeople.append(person)
             if person.infected == None and person.is_alive == True:
@@ -160,7 +163,7 @@ class Simulation(object):
                     person_exposed = healthyAlivePeople[random_int]
                     self.interaction(sick_person, person_exposed)
                     #log it
-                
+
                 did_survive = sick_person.did_survive_infection(self.mortality_rate)
                 if did_survive == True:
                     self.logger.log_infection_survival(sick_person, True)
@@ -206,7 +209,7 @@ class Simulation(object):
             #     Simulation object's newly_infected array, so that their .infected
             #     attribute can be changed to True at the end of the time step.
         # TODO: Remember to call self.logger.log_interaction() during this method!
-        
+
 
     def _infect_newly_infected(self):
         #print("Running _infect_newly_infected...")
@@ -231,7 +234,7 @@ class Simulation(object):
         # NOTE: Once you have iterated through the entire list of self.newly_infected, remember
         # to reset self.newly_infected back to an empty list!
 
-    
+
 
 if __name__ == "__main__":
     params = sys.argv[1:]

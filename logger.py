@@ -19,7 +19,7 @@ class Logger(object):
         # event logged ends up on a separate line!
 
         first_line = str(("{} {} {} {} {}\n".format(pop_size, vacc_percentage, virus_name, mortality_rate, basic_repro_num))).replace(" ", " ")
-        
+
         # outputString =  'Population Size: ' + str(pop_size) + '\n'
         # outputString += "% of people vaccinated: " + str(vacc_percentage) + '\n'
         # outputString += "Virus: " + virus_name + '\n'
@@ -43,7 +43,7 @@ class Logger(object):
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
         data = (person1._id, 'infected' if did_infect else 'did not infect', person2._id, person2._id, did_infect)
-        
+
         log = '%s %s %s because %s %s' % data
         self.log_file.write(log + '\n')
 
@@ -81,3 +81,5 @@ class Logger(object):
         # event logged ends up on a separate line!
         log = 'End of itteration %i. Number of people who died: %d' % (time_step_number, number_of_dead)
         self.log_file.write(log + '\n')
+    def close_logger(self):
+        self.log_file.close()
