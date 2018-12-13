@@ -48,7 +48,7 @@ class Simulation(object):
         population = []
         infected_count = 0
         while len(population) != self.population_size:
-            if infected_count !=  initial_infected:
+            if infected_count != initial_infected:
                 getSick = Virus(self.virus_name, self.mortality_rate, self. basic_repro_num)
                 myguy_sick = Person(len(population), False, getSick)
                 population.append(myguy_sick)
@@ -89,8 +89,6 @@ class Simulation(object):
         for person in self.population:
             if not person.is_alive:
                 self.total_dead += 1
-
-        #print("DEAD:",self.total_dead)
         if len(self.population) - self.total_dead <= 1:
             print("Everybody died. The virus is dangerous.")
             return False
@@ -238,11 +236,11 @@ class Simulation(object):
 
 if __name__ == "__main__":
     params = sys.argv[1:]
-    population_size = int(params[0])
-    vacc_percentage = float(params[1])
-    virus_name = str(params[2])
-    mortality_rate = float(params[3])
-    basic_repro_num = float(params[4])
+    virus_name = str(params[0])
+    basic_repro_num = float(params[1])
+    mortality_rate = float(params[2])
+    population_size = int(params[3])
+    vacc_percentage = float(params[4])
     if len(params) == 6:
         initial_infected = int(params[5])
     else:
